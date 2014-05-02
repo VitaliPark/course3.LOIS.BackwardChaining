@@ -65,10 +65,11 @@ public class EntryPoint {
 		table2.addCortege(cort5);
 		table2.addCortege(cort6);
 		table2.addCortege(cort7);
+		List<Variable> attributes = new ArrayList<>();
+		attributes.add(new Variable("X"));
+		attributes.add(new Variable("Y"));
 		resT = table1.merge(table2);
+		resT = resT.projection(attributes);
 		System.out.println(resT);
 	}
-	
-	
-
 }
