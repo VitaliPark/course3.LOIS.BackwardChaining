@@ -14,6 +14,10 @@ public class Rule {
 	public void addRuleTerm(Predicate ruleTerm){
 		ruleTerms.add(ruleTerm);
 	}
+	
+	public ArrayList<Predicate> getRuleTerms() {
+		return ruleTerms;
+	}
 
 	public Predicate getPredicate() {
 		return predicate;
