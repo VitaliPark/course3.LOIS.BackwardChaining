@@ -1,5 +1,4 @@
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +6,6 @@ import model.Cortege;
 import model.ValueTable;
 import model.parameters.Constant;
 import model.parameters.Variable;
-
 
 public class EntryPoint {
 
@@ -25,7 +23,7 @@ public class EntryPoint {
 		list2.add(new Variable("Z"));
 		table1.setHeaders(list1);
 		table2.setHeaders(list2);
-		
+
 		Cortege cort1 = new Cortege();
 		Cortege cort2 = new Cortege();
 		Cortege cort3 = new Cortege();
@@ -38,7 +36,7 @@ public class EntryPoint {
 		cort3.put(new Variable("X"), new Constant("4"));
 		cort3.put(new Variable("Y"), new Constant("5"));
 		cort3.put(new Variable("Z"), new Constant("6"));
-		
+
 		Cortege cort4 = new Cortege();
 		Cortege cort5 = new Cortege();
 		Cortege cort6 = new Cortege();
@@ -52,15 +50,15 @@ public class EntryPoint {
 		cort6.put(new Variable("A"), new Constant("4"));
 		cort6.put(new Variable("Y"), new Constant("7"));
 		cort6.put(new Variable("Z"), new Constant("8"));
-		
+
 		cort7.put(new Variable("A"), new Constant("s"));
 		cort7.put(new Variable("Y"), new Constant("2"));
 		cort7.put(new Variable("Z"), new Constant("3"));
-		
+
 		table1.addCortege(cort1);
 		table1.addCortege(cort2);
 		table1.addCortege(cort3);
-		
+
 		table2.addCortege(cort4);
 		table2.addCortege(cort5);
 		table2.addCortege(cort6);

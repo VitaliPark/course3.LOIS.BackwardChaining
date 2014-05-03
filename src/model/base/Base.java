@@ -8,21 +8,19 @@ import model.Rule;
 
 public enum Base {
 	INSTANCE;
-	
 	private List<Rule> listOfRules = new ArrayList<>();
-	
-	public void addRule(Rule rule){
+
+	public void addRule(Rule rule) {
 		listOfRules.add(rule);
 	}
-	
-	public List<Rule> getAllRulesByPredicate(Predicate predicate){
+
+	public List<Rule> getAllRulesByPredicate(Predicate predicate) {
 		List<Rule> rules = new ArrayList<>();
 		for (Rule rule : listOfRules) {
-			if(predicate.equals(rule.getPredicate())){
+			if (predicate.equals(rule.getPredicate())) {
 				rules.add(rule);
 			}
 		}
 		return rules;
 	}
-	
 }
