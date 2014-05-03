@@ -18,7 +18,7 @@ public class Input {
 	public static void main(String[] args) {
 		CharStream charStream;
 		try {
-			charStream = new ANTLRFileStream("D:/Work/test.txt");
+			charStream = new ANTLRFileStream("./input.txt");
 			LogicLangLexer lexer = new LogicLangLexer(charStream);
 			TokenStream tokenStream = new CommonTokenStream(lexer);
 			LogicLangParser parser = new LogicLangParser(tokenStream);

@@ -1,0 +1,5 @@
+P(X,Y)<- Q(W,A);B(W,A).
+R(a,s).
+W(q,w).
+G(q).
+R(E)<-E(S,T).
