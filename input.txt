@@ -1,5 +1,11 @@
-P(X,Y)<- Q(W,A);B(W,A).
+P(X,Y)<- Q(X,A);B(W,Y).
 R(a,s).
 W(q,w).
 G(q).
-R(E)<-E(S,T).
+R(E)<-Q(S,E).
+G(a).
+R(P)<-Q(P,T).
+G(w).
+G(l).
+G(n).
+Q(a,d).

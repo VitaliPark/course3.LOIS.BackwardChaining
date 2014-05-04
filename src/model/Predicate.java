@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.base.Base;
 import model.parameters.Parameter;
 
 public class Predicate {
