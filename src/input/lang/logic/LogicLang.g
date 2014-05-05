@@ -1,4 +1,5 @@
 grammar LogicLang;
+
 options {
   language = Java;
 }
@@ -13,7 +14,11 @@ options {
 @lexer::header {
   package input.lang.logic;
 }
-@members{
+@parser::members {
+    @Override
+    public void reportError(RecognitionException e) {
+        throw new RuntimeException(e);
+    }
 }
 logicDB:
 	(rule|fact)* EOF 

@@ -86,7 +86,13 @@ public class MainWnd {
 			public void actionPerformed(ActionEvent arg0) {
 				// calculate
 				// return Predicate
-				reader.checkQuery(txtQueryfield.getText());
+				if(null==reader.checkQuery(txtQueryfield.getText())){
+					resulTextArea.setText(GUIConstants.INCORRECT_INPUT.getValue());
+				}else{
+				//fixed
+					resulTextArea.setText("");
+				}
+			
 			}
 		});
 		btnSearch.setBounds(245, 65, 89, 23);
@@ -127,7 +133,9 @@ public class MainWnd {
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// return Predicate
-				reader.checkQuery(txtQueryfield.getText());
+				if(null==reader.checkQuery(txtQueryfield.getText())){
+					resulTextArea.setText(GUIConstants.INCORRECT_INPUT.getValue());
+				}
 			}
 		});
 		searchButton.setIcon(new ImageIcon(GUIConstants.SEARCH_INMG_PATH

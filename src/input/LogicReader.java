@@ -20,41 +20,53 @@ import org.antlr.runtime.TokenStream;
 
 public class LogicReader {
 
+	private static final String INCORRECT_FILE = "incorrect file";
 	private JFileChooser fileChooser = new JFileChooser();
 	private CharStream charStream;
+	private TokenStream tokenStream;
+	private QueryLexer queryLexer;
+	private QueryParser queryParser;
+	private LogicLangLexer logicLexer;
+	private LogicLangParser logicParser;
 
-	public String read() {
+	public String read(){
 		int returnVal = fileChooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			try {
 				charStream = new ANTLRFileStream(fileChooser.getSelectedFile()
 						.getPath());
-				LogicLangLexer lexer = new LogicLangLexer(charStream);
-				TokenStream tokenStream = new CommonTokenStream(lexer);
-				LogicLangParser parser = new LogicLangParser(tokenStream);
-				parser.logicDB();
+				logicLexer = new LogicLangLexer(charStream);
+				tokenStream = new CommonTokenStream(logicLexer);
+				logicParser = new LogicLangParser(tokenStream);
+				logicParser.logicDB();
 				return charStream.toString();
-			} catch (RecognitionException e) {
-				e.printStackTrace();
 			} catch (IOException e1) {
 				e1.printStackTrace();
-			}
+			} catch (RecognitionException e) {
+				e.printStackTrace();
+			}catch (RuntimeException e){
+				return INCORRECT_FILE;
+			} 
+
 		}
-		System.out.print("done");
 		return null;
 	}
+
 
 	public Predicate checkQuery(String input) {
 		try {
 			charStream = new ANTLRStringStream(input);
-			QueryLexer lexer = new QueryLexer(charStream);
-			TokenStream tokenStream = new CommonTokenStream(lexer);
-			QueryParser parser = new QueryParser(tokenStream);
-			return parser.queryToDB();
+			queryLexer = new QueryLexer(charStream);
+			tokenStream = new CommonTokenStream(queryLexer);
+			queryParser = new QueryParser(tokenStream);
+			return queryParser.queryToDB();
 		} catch (RecognitionException e) {
 			e.printStackTrace();
+		}catch (RuntimeException e){
+			return null;
 		}
 		return null;
-
 	}
+
+
 }

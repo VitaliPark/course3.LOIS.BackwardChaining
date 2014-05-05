@@ -12,16 +12,20 @@ options {
 @lexer::header {
   package input.lang.query;
 }
-@members{
+@parser::members {
 	Predicate predicate;
+    @Override
+    public void reportError(RecognitionException e) {
+        throw new RuntimeException(e);
+    }
 }
 queryToDB returns[Predicate pr]:
-	query? EOF 
+	query EOF 
 	{$pr=predicate;}
 	;
 query:
 	VAR						{predicate=new Predicate($VAR.text);}
-	 '(' param ')'		
+	 '(' param ')'	'.'	
 	;
 	param:
 	firstVar=VAR			{predicate.addParameter(new Variable($firstVar.text));}
@@ -32,7 +36,7 @@ query:
 	firstConst=CONSTANT		{predicate.addParameter(new Constant($firstConst.text));}
 	 (',' 
 	 nConst=CONSTANT		{predicate.addParameter(new Constant($nConst.text));}
-	 )*
+	 )* 
 	;
 VAR:
 	'A'..'Z'

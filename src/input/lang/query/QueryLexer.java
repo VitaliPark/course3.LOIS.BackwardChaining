@@ -1,6 +1,7 @@
-// $ANTLR 3.5.1 D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g 2014-05-04 15:17:33
+// $ANTLR 3.5.1 D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g 2014-05-05 19:00:18
 
-package input.lang.query;
+  package input.lang.query;
+
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -9,13 +10,14 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class QueryLexer extends Lexer {
-	public static final int EOF = -1;
-	public static final int T__7 = 7;
-	public static final int T__8 = 8;
-	public static final int T__9 = 9;
-	public static final int CONSTANT = 4;
-	public static final int VAR = 5;
-	public static final int WS = 6;
+	public static final int EOF=-1;
+	public static final int T__7=7;
+	public static final int T__8=8;
+	public static final int T__9=9;
+	public static final int T__10=10;
+	public static final int CONSTANT=4;
+	public static final int VAR=5;
+	public static final int WS=6;
 
 	// delegates
 	// delegators
@@ -23,42 +25,33 @@ public class QueryLexer extends Lexer {
 		return new Lexer[] {};
 	}
 
-	public QueryLexer() {
-	}
-
+	public QueryLexer() {} 
 	public QueryLexer(CharStream input) {
 		this(input, new RecognizerSharedState());
 	}
-
 	public QueryLexer(CharStream input, RecognizerSharedState state) {
-		super(input, state);
+		super(input,state);
 	}
-
-	@Override
-	public String getGrammarFileName() {
-		return "D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g";
-	}
+	@Override public String getGrammarFileName() { return "D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g"; }
 
 	// $ANTLR start "T__7"
 	public final void mT__7() throws RecognitionException {
 		try {
 			int _type = T__7;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:11:6:
-			// ( '(' )
-			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:11:8:
-			// '('
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:11:6: ( '(' )
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:11:8: '('
 			{
-				match('(');
+			match('('); 
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		} finally {
+		}
+		finally {
 			// do for sure before leaving
 		}
 	}
-
 	// $ANTLR end "T__7"
 
 	// $ANTLR start "T__8"
@@ -66,21 +59,19 @@ public class QueryLexer extends Lexer {
 		try {
 			int _type = T__8;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:12:6:
-			// ( ')' )
-			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:12:8:
-			// ')'
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:12:6: ( ')' )
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:12:8: ')'
 			{
-				match(')');
+			match(')'); 
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		} finally {
+		}
+		finally {
 			// do for sure before leaving
 		}
 	}
-
 	// $ANTLR end "T__8"
 
 	// $ANTLR start "T__9"
@@ -88,49 +79,66 @@ public class QueryLexer extends Lexer {
 		try {
 			int _type = T__9;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:13:6:
-			// ( ',' )
-			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:13:8:
-			// ','
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:13:6: ( ',' )
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:13:8: ','
 			{
-				match(',');
+			match(','); 
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		} finally {
+		}
+		finally {
 			// do for sure before leaving
 		}
 	}
-
 	// $ANTLR end "T__9"
+
+	// $ANTLR start "T__10"
+	public final void mT__10() throws RecognitionException {
+		try {
+			int _type = T__10;
+			int _channel = DEFAULT_TOKEN_CHANNEL;
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:14:7: ( '.' )
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:14:9: '.'
+			{
+			match('.'); 
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally {
+			// do for sure before leaving
+		}
+	}
+	// $ANTLR end "T__10"
 
 	// $ANTLR start "VAR"
 	public final void mVAR() throws RecognitionException {
 		try {
 			int _type = VAR;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:37:4:
-			// ( 'A' .. 'Z' )
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:41:4: ( 'A' .. 'Z' )
 			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:
 			{
-				if ((input.LA(1) >= 'A' && input.LA(1) <= 'Z')) {
-					input.consume();
-				} else {
-					MismatchedSetException mse = new MismatchedSetException(
-							null, input);
-					recover(mse);
-					throw mse;
-				}
+			if ( (input.LA(1) >= 'A' && input.LA(1) <= 'Z') ) {
+				input.consume();
+			}
+			else {
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				recover(mse);
+				throw mse;
+			}
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		} finally {
+		}
+		finally {
 			// do for sure before leaving
 		}
 	}
-
 	// $ANTLR end "VAR"
 
 	// $ANTLR start "CONSTANT"
@@ -138,27 +146,26 @@ public class QueryLexer extends Lexer {
 		try {
 			int _type = CONSTANT;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:40:9:
-			// ( 'a' .. 'z' )
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:44:9: ( 'a' .. 'z' )
 			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:
 			{
-				if ((input.LA(1) >= 'a' && input.LA(1) <= 'z')) {
-					input.consume();
-				} else {
-					MismatchedSetException mse = new MismatchedSetException(
-							null, input);
-					recover(mse);
-					throw mse;
-				}
+			if ( (input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
+				input.consume();
+			}
+			else {
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				recover(mse);
+				throw mse;
+			}
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		} finally {
+		}
+		finally {
 			// do for sure before leaving
 		}
 	}
-
 	// $ANTLR end "CONSTANT"
 
 	// $ANTLR start "WS"
@@ -166,76 +173,78 @@ public class QueryLexer extends Lexer {
 		try {
 			int _type = WS;
 			int _channel = DEFAULT_TOKEN_CHANNEL;
-			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:43:4:
-			// ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:43:6:
-			// ( ' ' | '\\t' | '\\r' | '\\n' )+
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:47:4: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:47:6: ( ' ' | '\\t' | '\\r' | '\\n' )+
 			{
-				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:43:6:
-				// ( ' ' | '\\t' | '\\r' | '\\n' )+
-				int cnt1 = 0;
-				loop1: while (true) {
-					int alt1 = 2;
-					int LA1_0 = input.LA(1);
-					if (((LA1_0 >= '\t' && LA1_0 <= '\n') || LA1_0 == '\r' || LA1_0 == ' ')) {
-						alt1 = 1;
-					}
-
-					switch (alt1) {
-					case 1:
-					// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:
-					{
-						if ((input.LA(1) >= '\t' && input.LA(1) <= '\n')
-								|| input.LA(1) == '\r' || input.LA(1) == ' ') {
-							input.consume();
-						} else {
-							MismatchedSetException mse = new MismatchedSetException(
-									null, input);
-							recover(mse);
-							throw mse;
-						}
-					}
-						break;
-
-					default:
-						if (cnt1 >= 1)
-							break loop1;
-						EarlyExitException eee = new EarlyExitException(1,
-								input);
-						throw eee;
-					}
-					cnt1++;
+			// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:47:6: ( ' ' | '\\t' | '\\r' | '\\n' )+
+			int cnt1=0;
+			loop1:
+			while (true) {
+				int alt1=2;
+				int LA1_0 = input.LA(1);
+				if ( ((LA1_0 >= '\t' && LA1_0 <= '\n')||LA1_0=='\r'||LA1_0==' ') ) {
+					alt1=1;
 				}
 
-				_channel = HIDDEN;
+				switch (alt1) {
+				case 1 :
+					// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:
+					{
+					if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
+						input.consume();
+					}
+					else {
+						MismatchedSetException mse = new MismatchedSetException(null,input);
+						recover(mse);
+						throw mse;
+					}
+					}
+					break;
+
+				default :
+					if ( cnt1 >= 1 ) break loop1;
+					EarlyExitException eee = new EarlyExitException(1, input);
+					throw eee;
+				}
+				cnt1++;
+			}
+
+			 _channel = HIDDEN; 
 			}
 
 			state.type = _type;
 			state.channel = _channel;
-		} finally {
+		}
+		finally {
 			// do for sure before leaving
 		}
 	}
-
 	// $ANTLR end "WS"
 
 	@Override
 	public void mTokens() throws RecognitionException {
-		// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:8:
-		// ( T__7 | T__8 | T__9 | VAR | CONSTANT | WS )
-		int alt2 = 6;
-		switch (input.LA(1)) {
-		case '(': {
-			alt2 = 1;
-		}
+		// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:8: ( T__7 | T__8 | T__9 | T__10 | VAR | CONSTANT | WS )
+		int alt2=7;
+		switch ( input.LA(1) ) {
+		case '(':
+			{
+			alt2=1;
+			}
 			break;
-		case ')': {
-			alt2 = 2;
-		}
+		case ')':
+			{
+			alt2=2;
+			}
 			break;
-		case ',': {
-			alt2 = 3;
-		}
+		case ',':
+			{
+			alt2=3;
+			}
+			break;
+		case '.':
+			{
+			alt2=4;
+			}
 			break;
 		case 'A':
 		case 'B':
@@ -262,9 +271,10 @@ public class QueryLexer extends Lexer {
 		case 'W':
 		case 'X':
 		case 'Y':
-		case 'Z': {
-			alt2 = 4;
-		}
+		case 'Z':
+			{
+			alt2=5;
+			}
 			break;
 		case 'a':
 		case 'b':
@@ -291,73 +301,78 @@ public class QueryLexer extends Lexer {
 		case 'w':
 		case 'x':
 		case 'y':
-		case 'z': {
-			alt2 = 5;
-		}
+		case 'z':
+			{
+			alt2=6;
+			}
 			break;
 		case '\t':
 		case '\n':
 		case '\r':
-		case ' ': {
-			alt2 = 6;
-		}
+		case ' ':
+			{
+			alt2=7;
+			}
 			break;
 		default:
-			NoViableAltException nvae = new NoViableAltException("", 2, 0,
-					input);
+			NoViableAltException nvae =
+				new NoViableAltException("", 2, 0, input);
 			throw nvae;
 		}
 		switch (alt2) {
-		case 1:
-		// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:10:
-		// T__7
-		{
-			mT__7();
+			case 1 :
+				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:10: T__7
+				{
+				mT__7(); 
 
-		}
-			break;
-		case 2:
-		// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:15:
-		// T__8
-		{
-			mT__8();
+				}
+				break;
+			case 2 :
+				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:15: T__8
+				{
+				mT__8(); 
 
-		}
-			break;
-		case 3:
-		// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:20:
-		// T__9
-		{
-			mT__9();
+				}
+				break;
+			case 3 :
+				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:20: T__9
+				{
+				mT__9(); 
 
-		}
-			break;
-		case 4:
-		// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:25:
-		// VAR
-		{
-			mVAR();
+				}
+				break;
+			case 4 :
+				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:25: T__10
+				{
+				mT__10(); 
 
-		}
-			break;
-		case 5:
-		// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:29:
-		// CONSTANT
-		{
-			mCONSTANT();
+				}
+				break;
+			case 5 :
+				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:31: VAR
+				{
+				mVAR(); 
 
-		}
-			break;
-		case 6:
-		// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:38:
-		// WS
-		{
-			mWS();
+				}
+				break;
+			case 6 :
+				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:35: CONSTANT
+				{
+				mCONSTANT(); 
 
-		}
-			break;
+				}
+				break;
+			case 7 :
+				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:1:44: WS
+				{
+				mWS(); 
+
+				}
+				break;
 
 		}
 	}
+
+
 
 }
