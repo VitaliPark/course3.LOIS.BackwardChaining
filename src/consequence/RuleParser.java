@@ -31,7 +31,9 @@ public class RuleParser {
 			resultTable.union(temp);
 			changeCortegeHeaders(resultTable);
 		}
-		updateTable(resultTable);
+		if(!predicate.getHeadersAsVaribles().contains(new Variable("?"))){
+			updateTable(resultTable);
+		}
 		return resultTable;
 	}
 	

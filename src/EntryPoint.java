@@ -11,6 +11,7 @@ import model.Rule;
 import model.ValueTable;
 import model.base.Base;
 import model.parameters.Constant;
+import model.parameters.Parameter;
 import model.parameters.Variable;
 
 
@@ -347,8 +348,8 @@ public class EntryPoint {
 		Base.INSTANCE.addRule(ruleFact10);
 		
 		Predicate query = new Predicate("A");
-		query.addParameter(new Variable("X"));
-		query.addParameter(new Variable("Z"));
+		query.addParameter(new Variable("?"));
+		query.addParameter(new Variable("?"));
 		
 		RuleParser parser = new RuleParser(new ViewController());
 		ValueTable result = new ValueTable();
