@@ -2,7 +2,6 @@ package GUI;
 
 import input.LogicReader;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,36 +17,49 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import model.Predicate;
+import controller.ViewController;
+
 public class MainWnd {
 
 	private JFrame frame;
 	private JTextField txtQueryfield;
+	private ViewController controller;
 	private LogicReader reader;
 	private JTextArea DBTextArea;
 	private JTextArea resulTextArea;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWnd window = new MainWnd();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	// /**
+	// * Launch the application.
+	// */
+	// public static void main(String[] args) {
+	// EventQueue.invokeLater(new Runnable() {
+	// public void run() {
+	// try {
+	// MainWnd window = new MainWnd();
+	// window.frame.setVisible(true);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// });
+	// }
 
 	/**
 	 * Create the application.
 	 */
-	public MainWnd() {
-		reader = new LogicReader();
+	public MainWnd(ViewController controller) {
+		// reader = new LogicReader();
+		this.controller = controller;
 		initialize();
+	}
+
+	public void display() {
+		frame.setVisible(true);
+	}
+
+	public void setResult(String result) {
+		resulTextArea.setText(result);
 	}
 
 	/**
@@ -55,12 +67,12 @@ public class MainWnd {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 550, 300);
+		frame.setBounds(100, 100, 700, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(71, 36, 164, 129);
+		scrollPane.setBounds(71, 36, 229, 370);
 		frame.getContentPane().add(scrollPane);
 
 		DBTextArea = new JTextArea();
@@ -72,34 +84,33 @@ public class MainWnd {
 		frame.getContentPane().add(DBLabel);
 
 		txtQueryfield = new JTextField();
-		txtQueryfield.setBounds(248, 34, 86, 20);
+		txtQueryfield.setBounds(327, 34, 86, 20);
 		frame.getContentPane().add(txtQueryfield);
 		txtQueryfield.setColumns(10);
 
 		JLabel queryLabel = new JLabel(GUIConstants.QUERY_LABEL_NAME.getValue());
-		queryLabel.setBounds(248, 11, 46, 14);
+		queryLabel.setBounds(327, 11, 46, 14);
 		frame.getContentPane().add(queryLabel);
 
 		JButton btnSearch = new JButton(
 				GUIConstants.SEARCH_BUTTON_NAME.getValue());
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// calculate
-				// return Predicate
-				if(null==reader.checkQuery(txtQueryfield.getText())){
-					resulTextArea.setText(GUIConstants.INCORRECT_INPUT.getValue());
-				}else{
-				//fixed
-					resulTextArea.setText("");
+				Predicate prdicateQuery = controller.checkQuery(txtQueryfield
+						.getText());
+				if (null == prdicateQuery) {
+					setResult(GUIConstants.INCORRECT_INPUT.getValue());
+				} else {
+					controller.parsePredicate(prdicateQuery);
 				}
-			
+
 			}
 		});
-		btnSearch.setBounds(245, 65, 89, 23);
+		btnSearch.setBounds(327, 66, 89, 23);
 		frame.getContentPane().add(btnSearch);
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(359, 36, 165, 129);
+		scrollPane_1.setBounds(437, 36, 237, 370);
 		frame.getContentPane().add(scrollPane_1);
 
 		resulTextArea = new JTextArea();
@@ -107,7 +118,7 @@ public class MainWnd {
 		scrollPane_1.setViewportView(resulTextArea);
 
 		JLabel lblResult = new JLabel("Result");
-		lblResult.setBounds(359, 11, 46, 14);
+		lblResult.setBounds(453, 11, 46, 14);
 		frame.getContentPane().add(lblResult);
 
 		JToolBar toolBar = new JToolBar();
@@ -120,7 +131,7 @@ public class MainWnd {
 				.getValue()));
 		openButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				DBTextArea.setText(reader.read());
+				DBTextArea.setText(controller.readDB());
 			}
 		});
 		openButton
@@ -133,8 +144,12 @@ public class MainWnd {
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// return Predicate
-				if(null==reader.checkQuery(txtQueryfield.getText())){
-					resulTextArea.setText(GUIConstants.INCORRECT_INPUT.getValue());
+				Predicate prdicateQuery = controller.checkQuery(txtQueryfield
+						.getText());
+				if (null == prdicateQuery) {
+					setResult(GUIConstants.INCORRECT_INPUT.getValue());
+				} else {
+					controller.parsePredicate(prdicateQuery);
 				}
 			}
 		});

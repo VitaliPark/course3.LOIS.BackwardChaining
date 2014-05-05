@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.swing.JFileChooser;
 
 import model.Predicate;
+import model.base.Base;
 
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.ANTLRStringStream;
@@ -29,7 +30,8 @@ public class LogicReader {
 	private LogicLangLexer logicLexer;
 	private LogicLangParser logicParser;
 
-	public String read(){
+	public String read() {
+		Base.INSTANCE.cleanBase();
 		int returnVal = fileChooser.showOpenDialog(null);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			try {
@@ -44,14 +46,13 @@ public class LogicReader {
 				e1.printStackTrace();
 			} catch (RecognitionException e) {
 				e.printStackTrace();
-			}catch (RuntimeException e){
+			} catch (RuntimeException e) {
 				return INCORRECT_FILE;
-			} 
+			}
 
 		}
 		return null;
 	}
-
 
 	public Predicate checkQuery(String input) {
 		try {
@@ -62,11 +63,10 @@ public class LogicReader {
 			return queryParser.queryToDB();
 		} catch (RecognitionException e) {
 			e.printStackTrace();
-		}catch (RuntimeException e){
+		} catch (RuntimeException e) {
 			return null;
 		}
 		return null;
 	}
-
 
 }
