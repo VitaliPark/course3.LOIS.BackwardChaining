@@ -1,17 +1,20 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.parameters.Parameter;
+import model.parameters.Variable;
 
 public class Predicate {
 
 	private String name;
-	private ArrayList<Parameter> parameters;
+	private List<Parameter> parameters;
 	
 	public Predicate(String name) {
 		super();
 		this.name = name;
+		parameters = new ArrayList<Parameter>();
 	}
 	
 	public void addParameter(Parameter parameter){
@@ -22,6 +25,19 @@ public class Predicate {
 		return name;
 	}
 	
+	public List<Parameter> getParameters() {
+		return parameters;
+	}
+	
+	public List<Variable> getHeadersAsVaribles(){
+		List<Variable> result = new ArrayList<>();
+		for (Parameter param : parameters) {
+			result.add(new Variable(param.getName()));
+		}
+		
+		return result;
+	}
+
 	@Override
 	public boolean equals(Object arg0) {
 		if(this == arg0)

@@ -20,6 +20,10 @@ public class ValueTable {
 		cortegeList.add(cortege);
 	}
 	
+	public void deleteCortege(Cortege cortege){
+		cortegeList.remove(cortege);
+	}
+	
 	public void addVariable(Variable var){
 		headers.add(var);
 	}
@@ -30,6 +34,14 @@ public class ValueTable {
 
 	public void setHeaders(List<Variable> headers) {
 		this.headers = headers;
+	}
+	public void setHeaders(String... variables){
+		if(!headers.isEmpty()){
+			headers.clear();
+		}
+		for (String variable : variables) {
+			headers.add(new Variable(variable));
+		}
 	}
 
 	public List<Cortege> getCortegeList() {
@@ -52,7 +64,7 @@ public class ValueTable {
 		Cortege temp = null;
 		for (Cortege thisCortege : this.cortegeList) {
 			for (Cortege cortege : table.getCortegeList()) {
-				temp = mergeCortege(thisCortege, cortege, commonAttributes);
+				temp = mergeCortege(thisCortege, cortege, commonAttributes, resultTable.headers);
 				if(temp != null){
 					resultTable.addCortege(temp);
 				}
@@ -61,12 +73,26 @@ public class ValueTable {
 		return resultTable;
 	}
 	
+	public int union(ValueTable tableToUnite){
+		if(this.getHeaders().size() != tableToUnite.getHeaders().size()){
+			return -1;
+		}
+		else{
+			for (Cortege cortege : tableToUnite.getCortegeList()) {
+				if(cortege.size() == this.getHeaders().size()){
+					this.cortegeList.add(cortege);
+				}
+			}
+			return 1;
+		}
+	}
+	
 	public ValueTable projection(List<Variable> attributes){
-		ValueTable resultTable = null;
+		ValueTable resultTable = new ValueTable();
 		if(attributes != null && !attributes.isEmpty() && this.headers.containsAll(attributes)){
-			resultTable = new ValueTable();
+			//resultTable = new ValueTable();
 			resultTable.setHeaders(attributes);
-			Cortege temp = new Cortege();
+			Cortege temp = new Cortege(attributes);
 			for (Cortege cortege : this.cortegeList) {
 				temp = cortege.project(attributes);
 				if(!resultTable.cortegeList.contains(temp)){
@@ -77,19 +103,24 @@ public class ValueTable {
 		return resultTable;
 	}
 	
-	private Cortege mergeCortege(Cortege first, Cortege second, List<Variable> commonAttributes){
+	private Cortege mergeCortege(Cortege first, Cortege second, List<Variable> commonAttributes, List<Variable> resultHeader){
 		Cortege resultCortege = null;
 		boolean isMergible = true;
 		for (Variable variable : commonAttributes) {
-			if(!first.get(variable).equals(second.get(variable))){
+			if(!first.get(first.getHeader().indexOf(variable)).equals(second.get(second.getHeader().indexOf(variable)))){
 				isMergible = false;
 				break;
 			}
 		}
 		if(isMergible){
-			resultCortege = new Cortege();
+			resultCortege = new Cortege(resultHeader);
 			resultCortege.putAll(first);
-			resultCortege.putAll(second);
+			//resultCortege.putAll(second);
+			for (Variable variable : second.getHeader()) {
+				if(!commonAttributes.contains(variable)){
+					resultCortege.add(resultHeader.indexOf(variable), second.get(second.getHeader().indexOf(variable)));
+				}
+			}
 		}
 		return resultCortege;
 	}
