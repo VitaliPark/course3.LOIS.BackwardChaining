@@ -53,11 +53,11 @@ predicate returns[Predicate result]:
 	;
 	
 VAR:
-	'A'..'Z'
+	'A'..'Z'+
 	;
 	
 CONSTANT:
-	'a'..'z'
+	'a'..'z'+
 	;
 	
 WS : ( ' ' | '\t' | '\r' | '\n' )+ { $channel = HIDDEN; };
