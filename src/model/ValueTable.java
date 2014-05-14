@@ -3,11 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.parameters.Variable;
+import model.parameters.Parameter;
+import model.parameters.ParameterType;
 
 public class ValueTable {
 
-	private List<Variable> headers;
+	private List<Parameter> headers;
 	private List<Cortege> cortegeList;
 
 	public ValueTable() {
@@ -24,15 +25,15 @@ public class ValueTable {
 		cortegeList.remove(cortege);
 	}
 
-	public void addVariable(Variable var) {
+	public void addVariable(Parameter var) {
 		headers.add(var);
 	}
 
-	public List<Variable> getHeaders() {
+	public List<Parameter> getHeaders() {
 		return headers;
 	}
 
-	public void setHeaders(List<Variable> headers) {
+	public void setHeaders(List<Parameter> headers) {
 		this.headers = headers;
 	}
 
@@ -41,7 +42,7 @@ public class ValueTable {
 			headers.clear();
 		}
 		for (String variable : variables) {
-			headers.add(new Variable(variable));
+			headers.add(new Parameter(ParameterType.VARIABLE, variable));
 		}
 	}
 
@@ -55,8 +56,8 @@ public class ValueTable {
 
 	public ValueTable merge(ValueTable table) {
 		ValueTable resultTable = new ValueTable();
-		List<Variable> commonAttributes = new ArrayList<>();
-		for (Variable variable : table.getHeaders()) {
+		List<Parameter> commonAttributes = new ArrayList<>();
+		for (Parameter variable : table.getHeaders()) {
 			if (headers.contains(variable)) {
 				commonAttributes.add(variable);
 			}
@@ -88,7 +89,7 @@ public class ValueTable {
 		}
 	}
 
-	public ValueTable projection(List<Variable> attributes) {
+	public ValueTable projection(List<Parameter> attributes) {
 		ValueTable resultTable = new ValueTable();
 		if (attributes != null && !attributes.isEmpty()
 				&& this.headers.containsAll(attributes)) {
@@ -105,10 +106,10 @@ public class ValueTable {
 	}
 
 	private Cortege mergeCortege(Cortege first, Cortege second,
-			List<Variable> commonAttributes, List<Variable> resultHeader) {
+			List<Parameter> commonAttributes, List<Parameter> resultHeader) {
 		Cortege resultCortege = null;
 		boolean isMergible = true;
-		for (Variable variable : commonAttributes) {
+		for (Parameter variable : commonAttributes) {
 			if (!first.get(first.getHeader().indexOf(variable)).equals(
 					second.get(second.getHeader().indexOf(variable)))) {
 				isMergible = false;
@@ -118,7 +119,7 @@ public class ValueTable {
 		if (isMergible) {
 			resultCortege = new Cortege(resultHeader);
 			resultCortege.putAll(first);
-			for (Variable variable : second.getHeader()) {
+			for (Parameter variable : second.getHeader()) {
 				if (!commonAttributes.contains(variable)) {
 					resultCortege.add(resultHeader.indexOf(variable),
 							second.get(second.getHeader().indexOf(variable)));
@@ -129,10 +130,10 @@ public class ValueTable {
 	}
 
 	private void formResultHeader(ValueTable table, ValueTable resultTable) {
-		for (Variable variable : this.headers) {
+		for (Parameter variable : this.headers) {
 			resultTable.addVariable(variable);
 		}
-		for (Variable variable : table.getHeaders()) {
+		for (Parameter variable : table.getHeaders()) {
 			if (!resultTable.getHeaders().contains(variable)) {
 				resultTable.addVariable(variable);
 			}
@@ -142,8 +143,8 @@ public class ValueTable {
 	@Override
 	public String toString() {
 		String result = new String();
-		for (Variable attribute : headers) {
-			result += attribute.getName() + " ";
+		for (Parameter attribute : headers) {
+			result += attribute.getValue() + " ";
 		}
 		result += '\n';
 		for (Cortege cortege : cortegeList) {

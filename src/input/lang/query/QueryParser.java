@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g 2014-05-05 22:40:45
+// $ANTLR 3.5.1 D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g 2014-05-14 18:28:59
 
 package input.lang.query;
 
@@ -155,7 +155,7 @@ public class QueryParser extends Parser {
 			// firstVar= VAR ( ',' nVar= VAR )*
 			{
 				firstVar = (Token) match(input, VAR, FOLLOW_VAR_in_param93);
-				predicate.addParameter(new Variable(
+				predicate.addParameter(new Parameter(ParameterType.VARIABLE,
 						(firstVar != null ? firstVar.getText() : null)));
 				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:32:3:
 				// ( ',' nVar= VAR )*
@@ -173,8 +173,9 @@ public class QueryParser extends Parser {
 					{
 						match(input, 9, FOLLOW_9_in_param102);
 						nVar = (Token) match(input, VAR, FOLLOW_VAR_in_param109);
-						predicate.addParameter(new Variable(
-								(nVar != null ? nVar.getText() : null)));
+						predicate.addParameter(new Parameter(
+								ParameterType.VARIABLE, (nVar != null ? nVar
+										.getText() : null)));
 					}
 						break;
 
@@ -191,7 +192,7 @@ public class QueryParser extends Parser {
 			{
 				firstConst = (Token) match(input, CONSTANT,
 						FOLLOW_CONSTANT_in_param127);
-				predicate.addParameter(new Constant(
+				predicate.addParameter(new Parameter(ParameterType.CONSTANT,
 						(firstConst != null ? firstConst.getText() : null)));
 				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\query\\Query.g:37:3:
 				// ( ',' nConst= CONSTANT )*
@@ -210,7 +211,8 @@ public class QueryParser extends Parser {
 						match(input, 9, FOLLOW_9_in_param135);
 						nConst = (Token) match(input, CONSTANT,
 								FOLLOW_CONSTANT_in_param142);
-						predicate.addParameter(new Constant(
+						predicate.addParameter(new Parameter(
+								ParameterType.CONSTANT,
 								(nConst != null ? nConst.getText() : null)));
 					}
 						break;

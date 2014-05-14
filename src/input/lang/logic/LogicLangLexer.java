@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\logic\\LogicLang.g 2014-05-05 22:40:46
+// $ANTLR 3.5.1 D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\logic\\LogicLang.g 2014-05-14 18:29:01
 
 package input.lang.logic;
 

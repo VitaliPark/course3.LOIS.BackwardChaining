@@ -27,9 +27,9 @@ logicDB:
 fact:
 	VAR {Predicate pr=new Predicate($VAR.text);}
 	'(' 
-	firstConst=CONSTANT {pr.addParameter(new Constant($firstConst.text));}
+	firstConst=CONSTANT {pr.addParameter(new Parameter(ParameterType.CONSTANT,$firstConst.text));}
 	(',' 
-	nConst=CONSTANT 	{pr.addParameter(new Constant($nConst.text));}
+	nConst=CONSTANT 	{pr.addParameter(new Parameter(ParameterType.CONSTANT,$nConst.text));}
 	)* ')' '.'			{Base.INSTANCE.addRule(new Rule(pr));}
 	;
 	
@@ -45,9 +45,9 @@ rule:
 	
 predicate returns[Predicate result]:
 	name=VAR '(' 		{Predicate pr=new Predicate($name.text);}
-	firstVar=VAR 		{pr.addParameter(new Variable($firstVar.text));}
+	firstVar=VAR 		{pr.addParameter(new Parameter(ParameterType.VARIABLE,$firstVar.text));}
 	(',' 
-	nVar=VAR	 		{pr.addParameter(new Variable($nVar.text));}
+	nVar=VAR	 		{pr.addParameter(new Parameter(ParameterType.VARIABLE,$nVar.text));}
 	)* ')'
 						{$result=pr;}
 	;

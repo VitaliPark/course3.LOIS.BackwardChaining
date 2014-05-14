@@ -23,9 +23,9 @@ public enum Base {
 		}
 		return rules;
 	}
-	
-	public void cleanBase(){
+
+	public void cleanBase() {
 		listOfRules.clear();
 	}
-	
+
 }

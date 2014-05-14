@@ -1,4 +1,4 @@
-// $ANTLR 3.5.1 D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\logic\\LogicLang.g 2014-05-05 22:40:46
+// $ANTLR 3.5.1 D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\logic\\LogicLang.g 2014-05-14 18:29:00
 
 package input.lang.logic;
 
@@ -147,8 +147,8 @@ public class LogicLangParser extends Parser {
 				match(input, 7, FOLLOW_7_in_fact68);
 				firstConst = (Token) match(input, CONSTANT,
 						FOLLOW_CONSTANT_in_fact74);
-				pr.addParameter(new Constant((firstConst != null ? firstConst
-						.getText() : null)));
+				pr.addParameter(new Parameter(ParameterType.CONSTANT,
+						(firstConst != null ? firstConst.getText() : null)));
 				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\logic\\LogicLang.g:31:2:
 				// ( ',' nConst= CONSTANT )*
 				loop2: while (true) {
@@ -166,8 +166,8 @@ public class LogicLangParser extends Parser {
 						match(input, 9, FOLLOW_9_in_fact80);
 						nConst = (Token) match(input, CONSTANT,
 								FOLLOW_CONSTANT_in_fact86);
-						pr.addParameter(new Constant((nConst != null ? nConst
-								.getText() : null)));
+						pr.addParameter(new Parameter(ParameterType.CONSTANT,
+								(nConst != null ? nConst.getText() : null)));
 					}
 						break;
 
@@ -284,8 +284,8 @@ public class LogicLangParser extends Parser {
 				Predicate pr = new Predicate((name != null ? name.getText()
 						: null));
 				firstVar = (Token) match(input, VAR, FOLLOW_VAR_in_predicate183);
-				pr.addParameter(new Variable((firstVar != null ? firstVar
-						.getText() : null)));
+				pr.addParameter(new Parameter(ParameterType.VARIABLE,
+						(firstVar != null ? firstVar.getText() : null)));
 				// D:\\Work\\Projects\\Logical—onsequence\\src\\input\\lang\\logic\\LogicLang.g:49:2:
 				// ( ',' nVar= VAR )*
 				loop4: while (true) {
@@ -303,8 +303,8 @@ public class LogicLangParser extends Parser {
 						match(input, 9, FOLLOW_9_in_predicate191);
 						nVar = (Token) match(input, VAR,
 								FOLLOW_VAR_in_predicate197);
-						pr.addParameter(new Variable((nVar != null ? nVar
-								.getText() : null)));
+						pr.addParameter(new Parameter(ParameterType.VARIABLE,
+								(nVar != null ? nVar.getText() : null)));
 					}
 						break;
 

@@ -1,11 +1,10 @@
 package controller;
 
 import input.LogicReader;
-import model.Predicate;
 import GUI.MainWnd;
 import consequence.Solver;
 
-public class ViewController {
+public class ViewController implements Controller {
 	private MainWnd window;
 	private LogicReader reader;
 	private Solver solver;
@@ -22,23 +21,13 @@ public class ViewController {
 		this.solver = solver;
 	}
 
-	public Predicate checkQuery(String query) {
-		return reader.checkQuery(query);
+	public void readDB() {
+		window.printDB(reader.read());
 	}
 
-	public String readDB() {
-		return reader.read();
+	public void solveTask(String query) {
+		String result = solver.solveTask(reader.checkQuery(query));
+		window.printResult(result);
 	}
 
-	public void printAnswer(String answer) {
-		window.setResult(answer);
-	}
-
-	public void solveTask(Predicate predicate) {
-		String result = solver.solveTask(predicate);
-		printAnswer(result);
-	}
-	public void printErrorMessage(String message) {
-		window.setResult(message);
-	}
 }

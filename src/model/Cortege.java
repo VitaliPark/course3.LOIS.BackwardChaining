@@ -2,57 +2,57 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.parameters.Constant;
-import model.parameters.Variable;
 
-public class Cortege{
+import model.parameters.Parameter;
 
-	private List<Variable> header;
-	private ArrayList<Constant> values; 
+public class Cortege {
 
-	public Cortege(List<Variable> header) {
+	private List<Parameter> header;
+	private List<Parameter> values;
+
+	public Cortege(List<Parameter> header) {
 		super();
 		this.header = header;
 		values = new ArrayList<>();
 	}
-	
-	public ArrayList<Constant> getValues() {
+
+	public List<Parameter> getValues() {
 		return values;
 	}
 
-	public Constant get(int index){
+	public Parameter get(int index) {
 		return values.get(index);
 	}
-	
-	public void add(int index, Constant constant){
+
+	public void add(int index, Parameter constant) {
 		values.add(index, constant);
 	}
-	
-	public void add(Constant constant){
+
+	public void add(Parameter constant) {
 		values.add(constant);
 	}
-	
-	public void addAll(List<Constant> list){
+
+	public void addAll(List<Parameter> list) {
 		values.addAll(list);
 	}
-	
-	public boolean isEmpty(){
+
+	public boolean isEmpty() {
 		return values.isEmpty();
 	}
-	
-	public List<Variable> getHeader() {
+
+	public List<Parameter> getHeader() {
 		return header;
 	}
 
-	public void setHeader(List<Variable> header) {
+	public void setHeader(List<Parameter> header) {
 		this.header = header;
 	}
 
-	public Cortege project(List<Variable> attributes) {
+	public Cortege project(List<Parameter> attributes) {
 		Cortege resultCortege = new Cortege(attributes);
-		for (Variable variable : attributes) {
+		for (Parameter variable : attributes) {
 			if (attributes.contains(variable)) {
-				resultCortege.put(variable, get(header.indexOf(variable)));
+				resultCortege.put(get(header.indexOf(variable)));
 			}
 		}
 		return resultCortege;
@@ -61,14 +61,14 @@ public class Cortege{
 	@Override
 	public String toString() {
 		String result = new String();
-		for (Constant constant : this.values) {
-			result += constant.getName() + " ";
+		for (Parameter constant : this.values) {
+			result += constant.getValue() + " ";
 		}
 		result += '\n';
 		return result;
 	}
 
-	public void put(Variable var, Constant constant) {
+	public void put(Parameter constant) {
 		add(constant);
 	}
 

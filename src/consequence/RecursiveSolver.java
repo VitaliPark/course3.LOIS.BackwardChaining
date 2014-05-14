@@ -3,36 +3,44 @@ package consequence;
 import java.util.ArrayList;
 import java.util.List;
 
+import GUI.GUIConstants;
 import model.Cortege;
 import model.Predicate;
 import model.Rule;
 import model.ValueTable;
 import model.base.Base;
-import model.parameters.Constant;
 import model.parameters.Parameter;
-import model.parameters.Variable;
+import model.parameters.ParameterType;
 import controller.ViewController;
 
-public class RecursiveSolver implements Solver{
+public class RecursiveSolver implements Solver {
 
 	@SuppressWarnings("unused")
 	private ViewController controller;
-	
+
 	public RecursiveSolver(ViewController controller) {
 		super();
 		this.controller = controller;
 	}
-	
-	public String solveTask(Predicate predicate){
+
+	public String solveTask(Predicate predicate) {
+		if (null == predicate) {
+			return GUIConstants.INCORRECT_INPUT.getValue();
+		}
 		ValueTable tempTable = new ValueTable();
-		if (predicate.getParameters().get(0) instanceof Variable) {
+		if (isVariable(predicate)) {
 			tempTable = processPredicate(predicate);
 			return tempTable.toString();
 		} else {
 			return factVerity(predicate);
 		}
+
 	}
-	
+
+	private boolean isVariable(Predicate predicate) {
+		return predicate.getParameters().get(0).getType() == ParameterType.VARIABLE;
+	}
+
 	private ValueTable processPredicate(Predicate predicate) {
 		ValueTable resultTable = new ValueTable();
 		resultTable.setHeaders(predicate.getHeadersAsVaribles());
@@ -45,12 +53,13 @@ public class RecursiveSolver implements Solver{
 			changeCortegeHeaders(resultTable);
 		}
 
-		if (!predicate.getHeadersAsVaribles().contains(new Variable("?"))) {
+		if (!predicate.getHeadersAsVaribles().contains(
+				new Parameter(ParameterType.VARIABLE, "?"))) {
 			updateTable(resultTable);
 		}
 		return resultTable;
 	}
-	
+
 	private ValueTable processRule(Rule rule) {
 		ValueTable resultTable = new ValueTable();
 		List<ValueTable> resultList;
@@ -78,15 +87,15 @@ public class RecursiveSolver implements Solver{
 		Cortege tempCortege = createCortegeFromPredicate(predicate);
 		return checkCortege(tempTable, tempCortege);
 	}
-	
+
 	private Cortege createCortegeFromPredicate(Predicate predicate) {
 		Cortege tempCortege = new Cortege(null);
 		for (Parameter param : predicate.getParameters()) {
-			tempCortege.add((Constant) param);
+			tempCortege.add(param);
 		}
 		return tempCortege;
 	}
-	
+
 	private String checkCortege(ValueTable table, Cortege tempCortege) {
 		for (Cortege cortege : table.getCortegeList()) {
 			if (cortege.equals(tempCortege)) {
@@ -95,7 +104,7 @@ public class RecursiveSolver implements Solver{
 		}
 		return Boolean.FALSE.toString();
 	}
-	
+
 	private ValueTable mergeAll(List<ValueTable> tableList) {
 		ValueTable temp;
 		if (tableList.size() > 1) {
@@ -108,12 +117,12 @@ public class RecursiveSolver implements Solver{
 		return tableList.get(0);
 	}
 
-	private ValueTable getFactTable(Rule fact, List<Variable> header) {
+	private ValueTable getFactTable(Rule fact, List<Parameter> header) {
 		ValueTable result = new ValueTable();
 		result.setHeaders(header);
 		Cortege cortege = new Cortege(header);
 		for (Parameter constant : fact.getPredicate().getParameters()) {
-			cortege.add((Constant) constant);
+			cortege.add(constant);
 		}
 		if (!cortege.isEmpty()) {
 			result.addCortege(cortege);
@@ -150,4 +159,3 @@ public class RecursiveSolver implements Solver{
 	}
 
 }
-

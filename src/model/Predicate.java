@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.parameters.Parameter;
-import model.parameters.Variable;
+import model.parameters.ParameterType;
 
 public class Predicate {
 
@@ -29,10 +29,10 @@ public class Predicate {
 		return parameters;
 	}
 
-	public List<Variable> getHeadersAsVaribles() {
-		List<Variable> result = new ArrayList<>();
+	public List<Parameter> getHeadersAsVaribles() {
+		List<Parameter> result = new ArrayList<>();
 		for (Parameter param : parameters) {
-			result.add(new Variable(param.getName()));
+			result.add(new Parameter(ParameterType.VARIABLE, param.getValue()));
 		}
 
 		return result;

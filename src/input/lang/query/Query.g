@@ -28,14 +28,14 @@ query:
 	 '(' param ')'	'.'	
 	;
 	param:
-	firstVar=VAR			{predicate.addParameter(new Variable($firstVar.text));}
+	firstVar=VAR			{predicate.addParameter(new Parameter(ParameterType.VARIABLE,$firstVar.text));}
 	 (',' 
-	 nVar=VAR				{predicate.addParameter(new Variable($nVar.text));}
+	 nVar=VAR				{predicate.addParameter(new Parameter(ParameterType.VARIABLE,$nVar.text));}
 	 )*
 	|
-	firstConst=CONSTANT		{predicate.addParameter(new Constant($firstConst.text));}
+	firstConst=CONSTANT		{predicate.addParameter(new Parameter(ParameterType.CONSTANT,$firstConst.text));}
 	 (',' 
-	 nConst=CONSTANT		{predicate.addParameter(new Constant($nConst.text));}
+	 nConst=CONSTANT		{predicate.addParameter(new Parameter(ParameterType.CONSTANT,$nConst.text));}
 	 )* 
 	;
 VAR:
